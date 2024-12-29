@@ -1,16 +1,51 @@
-# my_flutter
+# IdleFarm
 
 A new Flutter project.
 
-## Getting Started
+# 功能点
 
-This project is a starting point for a Flutter application.
+## 农场
 
-A few resources to get you started if this is your first Flutter project:
+- 游戏开始给一种初始作物
+- 作物自然生长，系统自动收割但是应该有损失
+- 作物应该自动售卖，
+- 作物可以留种？不如去商店购买
+- 游戏初期地皮较少
+- 可以购买地皮
+- 可以购买作物种子
+- 可以雇佣农民，增加作物产量
+- 不同的作物价格应该不同
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 牧场
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 可以考虑添加牧场，但初始没有
+- 可以购买牧场地皮
+- 可以购买动物
+- 自动售卖但有损失
+- 可以雇佣员工进行副产品的收益，比如蛋奶等
+
+## 商店
+
+- 可以购买地皮、种子、幼崽
+- 可以雇佣农民或者牧场员工
+
+## 掉落
+
+- 允许在收割农作物时发现新作物的种子
+
+- 允许每台设备掉落独一无二的作物种子或者发现新的生物
+
+# 逻辑
+
+- 由于是挂机游戏，种植什么作物如何分配呢，按照百分比？查看当前占用地皮的作物百分比是否到达设定值？那需要设置一个优先级以及百分比，同一种作物成熟时间会不同，每株植物需要单独计算，后期如果数量提升的话怕对性能有影响。
+
+- 是否每个作物的种植时间以及成熟时间单独计算呢？毕竟每种作物的成熟时间不同，且同种作物的不同株种植时间也不同。
+
+  可以在作物种下的时候就算出该作物成熟时间，构造一个成熟时间列表，从列表头向后依次遍历，查看当前节点的时间到了没（是否小于当前时间戳），如果到时间了，则收获当前节点内所有的作物。
+
+  - 问题在于，在添加了buff的时候，收获时间应该是会变化的，可以在遍历列表节点时直接减掉时间
+  - 列表节点对象存储：
+    - 当前节点成熟时间
+    - 当前节点包含作物种类/数量
+
+- 雇佣员工的作用可以有减少收获时间和增大产量两种，减少收货时间就可以叠加，但应该有个上限，不然后期员工数量直接叠上去几乎所有作物都瞬间收获
