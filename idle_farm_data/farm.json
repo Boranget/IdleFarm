@@ -1,0 +1,1 @@
+{"level":1,"plots":[{"id":"plot_1","type":"basic","level":2,"status":"claimed","cropId":null,"plantedAt":null,"matureAt":null}],"crops":[{"id":"wheat","name":"小麦","growthTime":300,"baseYield":10,"basePrice":10,"unlockLevel":1}],"farmers":[{"id":"farmer_1","type":"basic","level":2,"status":"working","skills":[]}],"tech":{"planting":0,"harvesting":0,"management":0,"economy":0}}
